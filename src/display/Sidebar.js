@@ -26,8 +26,19 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
+import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
+import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
+import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
+import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
+import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
+import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import { ColorModeContext, tokens } from "../theme.js";
 import { useTheme } from "@mui/material";
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -38,9 +49,9 @@ const Search = styled('div')(({ theme }) => ({
   '&:hover': {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '100%',
+  marginRight: theme.spacing(0),
+  marginLeft: 15,
+  width: '25%',
   [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(3),
     width: 'auto',
@@ -58,7 +69,6 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
@@ -71,14 +81,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function Sidebar() {
+const Sidebar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
-
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -103,32 +112,132 @@ export default function Sidebar() {
     setDrawerOpen(newOpen);
   };
 
+  const lists = [
+    {
+      name:'Dashboard',
+      icon:<HomeOutlinedIcon />,
+      to: '/'
+    },
+    {
+      name:'Manage Team',
+      icon:<PeopleOutlinedIcon />,
+      to: '/team'
+    },
+    {
+      name:'Contact Information',
+      icon:<ContactsOutlinedIcon />,
+      to: '/contact'
+    },
+    {
+      name:'Invoice Balance',
+      icon:<ReceiptOutlinedIcon />,
+      to: '/invoice'
+    },
+    {
+      name:'Register',
+      icon:<PersonOutlinedIcon />,
+      to: '/register'
+    },
+    {
+      name:'Calendan',
+      icon:<CalendarTodayOutlinedIcon />,
+      to: '/calendar'
+    },
+    {
+      name:'FAQ Page',
+      icon:<HelpOutlineOutlinedIcon />,
+      to: '/faqpage'
+    },
+    {
+      name:'Bar Chart',
+      icon:<BarChartOutlinedIcon />,
+      to: '/bar'
+    },
+    {
+      name:'Pie Chart',
+      icon:<PieChartOutlineOutlinedIcon />,
+      to: '/pie'
+    },
+    {
+      name:'Line Chart',
+      icon:<TimelineOutlinedIcon />,
+      to: '/line'
+    },
+  ]
   const DrawerList = (
     <Box sx={{ width: drawerWidth }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
+        {lists.slice(0,1).map((lists,index) => (
+          <ListItem key={lists.index} components={Link} to={lists.to}>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {lists.icon}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={lists.name}/>
+              <Link to={lists.to}/>
             </ListItemButton>
           </ListItem>
-        ))}
+        ) )}
       </List>
       <Divider />
+      <Typography
+              variant="h6"
+              color={colors.grey[300]}
+              sx={{ m: "15px 0 5px 20px" }}
+            >
+              Data
+            </Typography>
       <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
+        {lists.slice(1,4).map((lists) => (
+          <ListItem key={lists.index} components={Link} to={lists.to}>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {lists.icon}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={lists.name}/>
             </ListItemButton>
           </ListItem>
-        ))}
+        ) )}
+      </List>
+      <Divider />
+      <Typography
+              variant="h6"
+              color={colors.grey[300]}
+              sx={{ m: "15px 0 5px 20px" }}
+            >
+              Pages
+            </Typography>
+      <List>
+        {lists.slice(4,7).map((lists) => (
+          <ListItem key={lists.index} components={Link} to={lists.to}>
+            <ListItemButton>
+              <ListItemIcon>
+                {lists.icon}
+              </ListItemIcon>
+              <ListItemText primary={lists.name}/>
+            </ListItemButton>
+          </ListItem>
+        ) )}
+      </List>
+      <Divider/>
+      <Typography
+              variant="h6"
+              color={colors.grey[300]}
+              sx={{ m: "15px 0 5px 20px" }}
+            >
+              Chart
+            </Typography>
+      <List>
+        {lists.slice(7).map((lists) => (
+          <ListItem key={lists.index}>
+            <ListItemButton>
+              <ListItemIcon>
+                {lists.icon}
+              </ListItemIcon>
+              <ListItemText primary={lists.name}/>
+            </ListItemButton>
+          </ListItem>
+        ) )}
       </List>
     </Box>
   );
@@ -173,7 +282,7 @@ export default function Sidebar() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem onClick={colorMode.toggleColorMode}>
-      <IconButton size="large" color='inherit'>
+      <IconButton size="large" color='primary'>
           {theme.palette.mode === "dark" ? (
             <Brightness7Icon  />
           ) : (
@@ -183,7 +292,7 @@ export default function Sidebar() {
         <p>{theme.palette.mode} mode</p>
       </MenuItem>
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+        <IconButton size="large" aria-label="show 4 new mails">
           <Badge badgeContent={4} color="error">
             <MailIcon />
           </Badge>
@@ -194,7 +303,6 @@ export default function Sidebar() {
         <IconButton
           size="large"
           aria-label="show 17 new notifications"
-          color="inherit"
         >
           <Badge badgeContent={17} color="error">
             <NotificationsIcon />
@@ -208,7 +316,6 @@ export default function Sidebar() {
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
-          color="inherit"
         >
           <AccountCircle />
         </IconButton>
@@ -219,12 +326,13 @@ export default function Sidebar() {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <AppBar position="fixed">
+      <AppBar position="fixed" sx={{
+          bgcolor: theme.palette.appBar.main
+        }}>
         <Toolbar>
           <IconButton
             size="large"
             edge="start"
-            color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
             onClick={toggleDrawer(true)}
@@ -232,14 +340,16 @@ export default function Sidebar() {
             <MenuIcon />
           </IconButton>
           <Typography
-            variant="h6"
+            variant="h2"
             noWrap
             component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
+            sx={{ display: { xs: 'block', sm: 'block' } }}
+            color='primary'
           >
             Dashboard
           </Typography>
-          <Search>
+          <Search sx={{color:theme.palette.primary.main,
+          bgcolor:theme.palette.neutral.dark,}}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -250,14 +360,14 @@ export default function Sidebar() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-          <IconButton size='large' color='inherit' onClick={colorMode.toggleColorMode}>
+          <IconButton size='large' onClick={colorMode.toggleColorMode}>
           {theme.palette.mode === "dark" ? (
             <Brightness7Icon  />
           ) : (
             <Brightness4Icon  />
           )}
         </IconButton>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+            <IconButton size="large" aria-label="show 4 new mails">
               <Badge badgeContent={0} color="error">
                 <MailIcon />
               </Badge>
@@ -265,7 +375,6 @@ export default function Sidebar() {
             <IconButton
               size="large"
               aria-label="show 17 new notifications"
-              color="inherit"
             >
               <Badge badgeContent={0} color="error">
                 <NotificationsIcon />
@@ -278,7 +387,6 @@ export default function Sidebar() {
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
-              color="inherit"
             >
               <AccountCircle />
             </IconButton>
@@ -290,58 +398,36 @@ export default function Sidebar() {
               aria-controls={mobileMenuId}
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
-              color="inherit"
             >
               <MoreIcon />
             </IconButton>
           </Box>
         </Toolbar>
       </AppBar>
-      <Drawer
-        anchor="left"
+        <Drawer
+        anchor='left'
         open={drawerOpen}
         onClose={toggleDrawer(false)}
-        color='inherit'
-        sx={{
+          sx={{
           '& .MuiDrawer-paper': {
             top: { xs: 0, md: 64 }, // Height of the AppBar
+            height: 'calc(100% - 64px)', // Ensuring the Drawer takes up the correct height
+      overflowY: 'auto', // Enable vertical scrolling
           },
         }}
       >
         {DrawerList}
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      {/* <Box component="main" sx={{ flexGrow: 1, p: 3 }} backgroundColor='background'>
         <Toolbar />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
-          enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
-          imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
-          Convallis convallis tellus id interdum velit laoreet id donec ultrices.
-          Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
-          nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
-          leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
-          feugiat vivamus at augue. At augue eget arcu dictum varius duis at
-          consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-          sapien faucibus et molestie ac.
+        <Typography paragraph color='background'>
+          Content goes here...
         </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper
-          eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim
-          neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra
-          tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis
-          sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
-          tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit
-          gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-          et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis
-          tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
-      </Box>
+      </Box> */}
       {renderMobileMenu}
       {renderMenu}
     </Box>
   );
 }
+
+export default Sidebar;
