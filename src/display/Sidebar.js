@@ -81,7 +81,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const Sidebar = () => {
+// Custom styled ListItemButton
+const CustomListItemButton = styled(ListItemButton)(({ theme }) => ({
+  color: theme.palette.text.primary, // Default text color
+  '&:hover': {
+    backgroundColor: alpha(theme.palette.primary.main, 0.1), // Custom hover background
+    color: theme.palette.primary.main, // Custom hover text color
+  },
+}));
+
+export default function Sidebar() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
@@ -139,7 +148,7 @@ const Sidebar = () => {
       to: '/register'
     },
     {
-      name:'Calendan',
+      name:'Calendar',
       icon:<CalendarTodayOutlinedIcon />,
       to: '/calendar'
     },
@@ -164,80 +173,80 @@ const Sidebar = () => {
       to: '/line'
     },
   ]
+
   const DrawerList = (
     <Box sx={{ width: drawerWidth }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
-        {lists.slice(0,1).map((lists,index) => (
-          <ListItem key={lists.index} components={Link} to={lists.to}>
-            <ListItemButton>
+        {lists.slice(0, 1).map((list, index) => (
+          <ListItem key={index}>
+            <CustomListItemButton component={Link} to={list.to}>
               <ListItemIcon>
-                {lists.icon}
+                {list.icon}
               </ListItemIcon>
-              <ListItemText primary={lists.name}/>
-              <Link to={lists.to}/>
-            </ListItemButton>
+              <ListItemText primary={list.name} />
+            </CustomListItemButton>
           </ListItem>
-        ) )}
+        ))}
       </List>
       <Divider />
       <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Data
-            </Typography>
+        variant="h6"
+        color={colors.grey[300]}
+        sx={{ m: "15px 0 5px 20px" }}
+      >
+        Data
+      </Typography>
       <List>
-        {lists.slice(1,4).map((lists) => (
-          <ListItem key={lists.index} components={Link} to={lists.to}>
-            <ListItemButton>
+        {lists.slice(1, 4).map((list, index) => (
+          <ListItem key={index}>
+            <CustomListItemButton component={Link} to={list.to}>
               <ListItemIcon>
-                {lists.icon}
+                {list.icon}
               </ListItemIcon>
-              <ListItemText primary={lists.name}/>
-            </ListItemButton>
+              <ListItemText primary={list.name} />
+            </CustomListItemButton>
           </ListItem>
-        ) )}
+        ))}
       </List>
       <Divider />
       <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Pages
-            </Typography>
+        variant="h6"
+        color={colors.grey[300]}
+        sx={{ m: "15px 0 5px 20px" }}
+      >
+        Pages
+      </Typography>
       <List>
-        {lists.slice(4,7).map((lists) => (
-          <ListItem key={lists.index} components={Link} to={lists.to}>
-            <ListItemButton>
+        {lists.slice(4, 7).map((list, index) => (
+          <ListItem key={index}>
+            <CustomListItemButton component={Link} to={list.to}>
               <ListItemIcon>
-                {lists.icon}
+                {list.icon}
               </ListItemIcon>
-              <ListItemText primary={lists.name}/>
-            </ListItemButton>
+              <ListItemText primary={list.name} />
+            </CustomListItemButton>
           </ListItem>
-        ) )}
+        ))}
       </List>
-      <Divider/>
+      <Divider />
       <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Chart
-            </Typography>
+        variant="h6"
+        color={colors.grey[300]}
+        sx={{ m: "15px 0 5px 20px" }}
+      >
+        Chart
+      </Typography>
       <List>
-        {lists.slice(7).map((lists) => (
-          <ListItem key={lists.index}>
-            <ListItemButton>
+        {lists.slice(7).map((list, index) => (
+          <ListItem key={index}>
+            <CustomListItemButton component={Link} to={list.to}>
               <ListItemIcon>
-                {lists.icon}
+                {list.icon}
               </ListItemIcon>
-              <ListItemText primary={lists.name}/>
-            </ListItemButton>
+              <ListItemText primary={list.name} />
+            </CustomListItemButton>
           </ListItem>
-        ) )}
+        ))}
       </List>
     </Box>
   );
@@ -282,11 +291,11 @@ const Sidebar = () => {
       onClose={handleMobileMenuClose}
     >
       <MenuItem onClick={colorMode.toggleColorMode}>
-      <IconButton size="large" color='primary'>
+        <IconButton size="large" color='primary'>
           {theme.palette.mode === "dark" ? (
-            <Brightness7Icon  />
+            <Brightness7Icon />
           ) : (
-            <Brightness4Icon  />
+            <Brightness4Icon />
           )}
         </IconButton>
         <p>{theme.palette.mode} mode</p>
@@ -326,9 +335,7 @@ const Sidebar = () => {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <AppBar position="fixed" sx={{
-          bgcolor: theme.palette.appBar.main
-        }}>
+      <AppBar position="fixed" sx={{ bgcolor: theme.palette.appBar.main }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -348,8 +355,7 @@ const Sidebar = () => {
           >
             Dashboard
           </Typography>
-          <Search sx={{color:theme.palette.primary.main,
-          bgcolor:theme.palette.neutral.dark,}}>
+          <Search sx={{ color: theme.palette.primary.main, bgcolor: theme.palette.neutral.dark }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -360,13 +366,13 @@ const Sidebar = () => {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-          <IconButton size='large' onClick={colorMode.toggleColorMode}>
-          {theme.palette.mode === "dark" ? (
-            <Brightness7Icon  />
-          ) : (
-            <Brightness4Icon  />
-          )}
-        </IconButton>
+            <IconButton size='large' onClick={colorMode.toggleColorMode}>
+              {theme.palette.mode === "dark" ? (
+                <Brightness7Icon />
+              ) : (
+                <Brightness4Icon />
+              )}
+            </IconButton>
             <IconButton size="large" aria-label="show 4 new mails">
               <Badge badgeContent={0} color="error">
                 <MailIcon />
@@ -404,30 +410,22 @@ const Sidebar = () => {
           </Box>
         </Toolbar>
       </AppBar>
-        <Drawer
+      <Drawer
         anchor='left'
         open={drawerOpen}
         onClose={toggleDrawer(false)}
-          sx={{
+        sx={{
           '& .MuiDrawer-paper': {
             top: { xs: 0, md: 64 }, // Height of the AppBar
             height: 'calc(100% - 64px)', // Ensuring the Drawer takes up the correct height
-      overflowY: 'auto', // Enable vertical scrolling
+            overflowY: 'auto', // Enable vertical scrolling
           },
         }}
       >
         {DrawerList}
       </Drawer>
-      {/* <Box component="main" sx={{ flexGrow: 1, p: 3 }} backgroundColor='background'>
-        <Toolbar />
-        <Typography paragraph color='background'>
-          Content goes here...
-        </Typography>
-      </Box> */}
       {renderMobileMenu}
       {renderMenu}
     </Box>
   );
 }
-
-export default Sidebar;

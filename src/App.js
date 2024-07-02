@@ -17,7 +17,7 @@ function App() {
         <CssBaseline />
         <BrowserRouter>
           <Sidebar />
-          <Box component="main" sx={{ flexGrow: 1, p: 3, pt: 10 }} bgcolor='background.default'>
+          <Box component="main" sx={{ flexGrow: 1, p: 3, pt: 10 }}>
             <Routes>
               <Route path='/' element={<Dashboard />} />
               <Route path='/pie' element={<PieChart />} />
