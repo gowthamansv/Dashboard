@@ -146,11 +146,14 @@ export const themeSettings = (mode) => {
             appBar: {
               main: colors.primary[600], // Change this to your desired AppBar color in dark mode
             },
+            box: {
+              main:colors.primary[500],
+            },
           }
         : {
             // palette values for light mode
             primary: {
-              main: colors.primary[500],
+              main: colors.primary[200],
             },
             secondary: {
               main: colors.greenAccent[500],
@@ -164,7 +167,10 @@ export const themeSettings = (mode) => {
               default: "#fcfcfc",
             },
             appBar: {
-              main: colors.primary[400], // Change this to your desired AppBar color in light mode
+              main: colors.primary[900], // Change this to your desired AppBar color in light mode
+            },
+            box: {
+              main:colors.primary[800],
             },
           }),
     },

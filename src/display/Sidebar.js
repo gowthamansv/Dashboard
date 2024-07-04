@@ -23,7 +23,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
+// import InboxIcon from '@mui/icons-material/MoveToInbox';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -155,7 +155,7 @@ export default function Sidebar() {
     {
       name:'FAQ Page',
       icon:<HelpOutlineOutlinedIcon />,
-      to: '/faqpage'
+      to: '/faq'
     },
     {
       name:'Bar Chart',
@@ -335,7 +335,7 @@ export default function Sidebar() {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <AppBar position="fixed" sx={{ bgcolor: theme.palette.appBar.main }}>
+      <AppBar position="fixed" sx={{ bgcolor: theme.palette.box.main }}>
         <Toolbar>
           <IconButton
             size="large"

@@ -772,7 +772,6 @@ export const mockPieData = [
     "label": "pradeep",
     "value": 182100,
     "color": "hsl(151, 70%, 50%)",
-    color: tokens("dark").greenAccent[500],
   },
   {
     "id": "soniya",
@@ -834,18 +833,18 @@ export const mockPieData = [
 export const mockLineData = [
   {
     id: "profit",
-    color: tokens("dark").greenAccent[500],
+    color: tokens('dark').greenAccent[300],
     data: [
       {
-        x: "july0sept",
+        x: "july-sept",
         y: 10000,
       },
       {
-        x: "oct0dec",
+        x: "oct-dec",
         y: 15000,
       },
       {
-        x: "jan0mar",
+        x: "jan-mar",
         y: 20229,
       },
     ],

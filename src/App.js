@@ -5,8 +5,11 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
-import PieChart from './pages/PieChart'
 import {Box} from '@mui/material'
+import Pie from './pages/Pie';
+import Line from './pages/Line';
+import Bar from './pages/Bar';
+import Faqdisplay from './pages/FaqDisplay';
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -20,7 +23,11 @@ function App() {
           <Box component="main" sx={{ flexGrow: 1, p: 3, pt: 10 }}>
             <Routes>
               <Route path='/' element={<Dashboard />} />
-              <Route path='/pie' element={<PieChart />} />
+              <Route path='/pie' element={<Pie />} />
+              <Route path='/line' element={<Line/>}/>
+              <Route path='/bar' element={<Bar/>}/>
+              <Route path='/faq' element={<Faqdisplay/>}/>
+              {/* <Route path='/invoice' element={<InvoicesDisplay/>}/> */}
               {/* Add more routes as needed */}
             </Routes>
           </Box>
