@@ -106,12 +106,12 @@ const Dashboard = () => {
       </Typography>
       <Box display="flex" flexDirection="column" alignItems="center" justifyContent='space-evenly' height='40vh' >
         <Typography variant="h5" color={colors.greenAccent[500]} sx={{ mt: "20px" }}>
-        53,857 revenue generated
+        61,680 revenue generated
         </Typography>
-        <Typography variant="h5" >Invested amount: 7,29,100</Typography>
-        <Typography variant="h5" >Reinvested amount: 7,82,957</Typography>
-        <Typography variant="h5" >Returns: 6.8%</Typography>
-        <Typography variant="h5" >Company expenses:17,700 </Typography>
+        <Typography variant="h5" >Invested amount: 7,82,000</Typography>
+        <Typography variant="h5" >Reinvested amount: 8,43,680</Typography>
+        <Typography variant="h5" >Returns: 7.8%</Typography>
+        <Typography variant="h5" >Company expenses:10,700 </Typography>
       </Box>
     </Box>
     <Box className='row-22' p="10px" mt={2} backgroundColor={colors.primary[400]}>

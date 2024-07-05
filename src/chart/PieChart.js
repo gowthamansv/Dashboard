@@ -38,7 +38,7 @@ const PieChart = ({ isDashboard = true }) => {
             },
             tooltip: {
               container: {
-                color: colors.primary[900],
+                color: colors.primary[100],
               },
             },
           }}
@@ -59,12 +59,12 @@ const PieChart = ({ isDashboard = true }) => {
         }}
         enableArcLinkLabels={isDashboard} // isDashboard
         arcLinkLabelsSkipAngle={10}
-        arcLinkLabelsTextColor="#f7f7f7"
+        arcLinkLabelsTextColor={colors.primary[100]}
         arcLinkLabelsThickness={2}
         arcLinkLabelsColor={{ from: 'color' }}
         enableArcLabels={isDashboard} //isDashboard
         arcLabelsSkipAngle={10}
-        arcLabelsTextColor="#333333" // color label
+        arcLabelsTextColor={colors.primary[800]} // color label
         legends={[ isDashboard ? 
             {
                 anchor: 'right',
@@ -75,11 +75,10 @@ const PieChart = ({ isDashboard = true }) => {
                 itemsSpacing: 8,
                 itemWidth: 60,
                 itemHeight: 20,
-                itemTextColor: '#999',
+                itemTextColor:colors.primary[100],
                 itemDirection: 'left-to-right',
                 itemOpacity: 1,
-                symbolSize: 12,
-                symbolShape: 'circle'
+                symbolSize: 12
             } : {}//isDashboard
         ]}
     />

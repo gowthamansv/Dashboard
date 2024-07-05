@@ -9,6 +9,7 @@
     "@mui/material": "^5.15.21",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@mui/x-charts": "^7.8.0",
+    "@mui/x-data-grid": "^7.8.0",
     "@nivo/bar": "^0.85.1",
     "@nivo/core": "^0.85.1",
     "@nivo/legends": "^0.85.1",

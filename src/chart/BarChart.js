@@ -44,7 +44,7 @@ const BarChart = ({ isDashboard = false }) => {
           },
         }}
         keys={[
-          "pradeep", "soniya", "vinith", "vasan", "arunmuhil", "prabagaran", "laxmanan", "raman", "shalini", "chandra" 
+          "alice", "bob", "carol", "david", "emma", "frank", "grace", "hank", "ivy", "jack" , "quinn", "ruby","steve"
         ]}
         indexBy="month"
         groupMode= {isDashboard ? "stacked" : "stacked" }

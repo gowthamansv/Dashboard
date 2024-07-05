@@ -37,7 +37,7 @@ import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
 import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import { ColorModeContext, tokens } from "../theme.js";
-import { useTheme } from "@mui/material";
+import { colors, useTheme } from "@mui/material";
 import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
@@ -83,7 +83,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 // Custom styled ListItemButton
 const CustomListItemButton = styled(ListItemButton)(({ theme }) => ({
-  color: theme.palette.text.primary, // Default text color
+  color: theme.palette.primary.light, // Default text color
+  backgroundColor: theme.palette.primary[400],
   '&:hover': {
     backgroundColor: alpha(theme.palette.primary.main, 0.1), // Custom hover background
     color: theme.palette.primary.main, // Custom hover text color
@@ -175,7 +176,7 @@ export default function Sidebar() {
   ]
 
   const DrawerList = (
-    <Box sx={{ width: drawerWidth }} role="presentation" onClick={toggleDrawer(false)}>
+    <Box sx={{ width: drawerWidth }} role="presentation" onClick={toggleDrawer(false)} backgroundColor={theme.palette.box.main}>
       <List>
         {lists.slice(0, 1).map((list, index) => (
           <ListItem key={index}>
@@ -419,6 +420,7 @@ export default function Sidebar() {
             top: { xs: 0, md: 64 }, // Height of the AppBar
             height: 'calc(100% - 64px)', // Ensuring the Drawer takes up the correct height
             overflowY: 'auto', // Enable vertical scrolling
+            // bgcolor: colors.primary[400]
           },
         }}
       >
