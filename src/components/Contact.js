@@ -69,7 +69,11 @@ const Contact = () => {
         <DataGrid
           rows={mockDataContacts} // Pass fetched contacts as rows
           columns={columns}
-          components={{ Toolbar: GridToolbar }}
+          slots={{ toolbar: GridToolbar }}
+          slotProps={{ toolbar: { 
+            csvOptions: { fileName: 'Contact Information' }, 
+            printOptions: { fileName: 'Contact Information' }
+        } }}
         />
       </Box>
     </Box>
