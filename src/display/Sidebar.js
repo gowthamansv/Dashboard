@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useContext } from "react";
+import { useContext , useState } from "react";
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -37,8 +37,12 @@ import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
 import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import { ColorModeContext, tokens } from "../theme.js";
-import { colors, useTheme } from "@mui/material";
+import { useTheme } from "@mui/material";
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import Snackbar from '@mui/material/Snackbar';
+import Grow from '@mui/material/Grow';
+import Fade from '@mui/material/Fade';
 
 const drawerWidth = 240;
 
@@ -91,6 +95,10 @@ const CustomListItemButton = styled(ListItemButton)(({ theme }) => ({
   },
 }));
 
+function GrowTransition(props) {
+  return <Grow {...props} />;
+}
+
 export default function Sidebar() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -120,6 +128,49 @@ export default function Sidebar() {
 
   const toggleDrawer = (newOpen) => () => {
     setDrawerOpen(newOpen);
+  };
+
+  const [state, setState] = React.useState({
+    open: false,
+    Transition: Fade,
+  });
+
+  const handleClick = (Transition) => () => {
+    setState({
+      open: true,
+      Transition,
+    });
+  };
+
+  const handleClose = () => {
+    setState({
+      ...state,
+      open: false,
+    });
+  };
+
+  const handleMenuClick = () => {
+    handleLogout();
+    handleClick(GrowTransition)();
+};
+
+  const [logoutMessage, setLogoutMessage] = useState('');
+
+  const handleLogout = async () => {
+    try {
+      // Make a request to the logout endpoint 
+      // const response = await axios.get('https://austin-partnership-back-end.onrender.com/auth/logout'); // or '/logout1' depending on which endpoint you want to use
+      const response = await axios.get('http://127.0.0.1:8000/auth/logout');
+      // Assuming the logout endpoint returns a success message upon successful logout
+      setLogoutMessage(response.data.message); // You may need to adjust this based on the actual response format
+      // Redirect to the login page or perform any other necessary actions
+      // window.location.href = 'https://austinpartnership.in/';
+      window.location.href = 'http://localhost:3000/line';// Redirect to the login page
+    } catch (error) {
+      console.error('Logout failed:', error);
+      alert('logout failed');
+      // Handle error
+    }
   };
 
   const lists = [
@@ -271,6 +322,7 @@ export default function Sidebar() {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClick}>Logout</MenuItem>
     </Menu>
   );
 
@@ -428,6 +480,14 @@ export default function Sidebar() {
       </Drawer>
       {renderMobileMenu}
       {renderMenu}
+      <Snackbar
+        open={state.open}
+        onClose={handleClose}
+        TransitionComponent={state.Transition}
+        message={logoutMessage}
+        key={state.Transition.name}
+        autoHideDuration={1200}
+      />
     </Box>
   );
 }

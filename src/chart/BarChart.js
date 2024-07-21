@@ -1,3 +1,4 @@
+import React from 'react';
 import { useTheme } from "@mui/material";
 import { ResponsiveBar } from "@nivo/bar";
 import { tokens } from "../theme";
@@ -47,7 +48,7 @@ const BarChart = ({ isDashboard = false }) => {
           "alice", "bob", "carol", "david", "emma", "frank", "grace", "hank", "ivy", "jack" , "quinn", "ruby","steve"
         ]}
         indexBy="month"
-        groupMode= {isDashboard ? "stacked" : "stacked" }
+        groupMode={isDashboard ? "stacked" : "stacked"}
         margin={isDashboard ? { top: 10, right: 10, bottom: 60, left: 50 } : { top: 50, right: 130, bottom: 50, left: 60 }}
         padding={0.3}
         enableLabel={!isDashboard}
@@ -69,9 +70,9 @@ const BarChart = ({ isDashboard = false }) => {
         axisBottom={{
             tickSize: 5,
             tickPadding: 5,
-            tickValues:12,
+            tickValues: 12,
             tickRotation: isDashboard ? -25 : 0,
-            legend: isDashboard ? undefined : "month", // changed  
+            legend: isDashboard ? undefined : "month",
             legendPosition: 'middle',
             legendOffset: 32,
             truncateTickAt: 0
@@ -81,14 +82,14 @@ const BarChart = ({ isDashboard = false }) => {
             tickPadding: 5,
             tickValues: isDashboard ? 3 : 7,
             tickRotation: 0,
-            legend: isDashboard ? undefined : "rupee", // changed
+            legend: isDashboard ? undefined : "rupee",
             legendPosition: 'middle',
             legendOffset: -55,
             truncateTickAt: 0
         }}
         labelSkipWidth={12}
         labelSkipHeight={12}
-        legends={[ isDashboard ? {} :
+        legends={isDashboard ? [] : [
             {
                 anchor: 'bottom-right',
                 direction: 'column',
@@ -107,7 +108,7 @@ const BarChart = ({ isDashboard = false }) => {
         barAriaLabel={function (e) {
           return e.id + ": " + e.formattedValue + " in month: " + e.indexValue;
         }}
-        />
+    />
   );
 };
 

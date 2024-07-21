@@ -38,7 +38,7 @@ const PieChart = ({ isDashboard = true }) => {
             },
             tooltip: {
               container: {
-                color: colors.primary[100],
+                color: colors.primary[500],
               },
             },
           }}
@@ -64,7 +64,7 @@ const PieChart = ({ isDashboard = true }) => {
         arcLinkLabelsColor={{ from: 'color' }}
         enableArcLabels={isDashboard} //isDashboard
         arcLabelsSkipAngle={10}
-        arcLabelsTextColor={colors.primary[800]} // color label
+        arcLabelsTextColor={colors.primary[500]} // color label
         legends={[ isDashboard ? 
             {
                 anchor: 'right',
