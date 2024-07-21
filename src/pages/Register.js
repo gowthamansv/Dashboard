@@ -130,6 +130,7 @@ const Register = () => {
                       {...input}
                       value={values[input.name]}
                       onChange={onChange}
+                      className='ij'
                     />
                   ))}
                   <button className="register-btn" type="submit" onClick={() => {alert(message);}}>

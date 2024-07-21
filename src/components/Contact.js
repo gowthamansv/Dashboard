@@ -50,7 +50,7 @@ const Contact = () => {
 //   }, []); // Empty dependency array ensures this effect runs only once on mount
 
   return (
-    <Box m="20px">
+    <Box>
       <Box
         m="20px 0 0 0"
         height="75vh"

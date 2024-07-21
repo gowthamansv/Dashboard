@@ -9,7 +9,7 @@ const ContactDisplay = () => {
   const colors = tokens(theme.palette.mode);
 
     return (
-          <Box m="10px" sx={{ bgcolor: colors.box }}>
+          <Box m="20px" sx={{ bgcolor: colors.box }}>
             <Header title="CONTACTS" subtitle="List of Contacts for Future Reference" />
   <Box height="75vh">
   <Contact />
