@@ -18,7 +18,7 @@ const Contact = () => {
       field: "name",
       headerName: "Name",
       flex: 1,
-      cellClassName: "name-column--cell",width: 125, minWidth: 150, 
+      cellClassName: "name-column--cell", width: 125, minWidth: 150, 
     },
     {
       field: "email",
