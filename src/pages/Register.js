@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Box } from "@mui/material";
 import FormInput from "../components/FormInput";
-import { ColorModeContext, useMode } from "../theme";
 // import axios from "axios";
 import "../css/RegisterStyles.css";
 import Header from "../components/Header";
@@ -17,9 +16,6 @@ const Register = () => {
     role: "",
     phone_number: "",
   });
-
-  const [theme, colorMode] = useMode();
-  const [isSidebar, setIsSidebar] = useState(true);
 
   const inputs = [
     {
@@ -100,7 +96,7 @@ const Register = () => {
       required: true,
     },
   ];
-  const [message, setMessage] = useState('');
+  // const [message, setMessage] = useState('');
     const handleSubmit = async (e) => {
     e.preventDefault();
     // try {
@@ -133,7 +129,7 @@ const Register = () => {
                       className='ij'
                     />
                   ))}
-                  <button className="register-btn" type="submit" onClick={() => {alert(message);}}>
+                  <button className="register-btn" type="submit" onClick={() => {alert('thank you');}}>
                     Submit
                   </button>
                 </form>
